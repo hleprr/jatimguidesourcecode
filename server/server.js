@@ -84,57 +84,57 @@ const CITY_HOTELS = {
 // Daily travel tips per city
 const CITY_TIPS = {
   Surabaya: [
-    'Start early to avoid traffic in the city center',
-    'Visit House of Sampoerna in the morning when it\'s less crowded',
-    'Try local coffee at traditional kopi shops',
+    'Start early to avoid traffic in the city center, ',
+    'Visit House of Sampoerna in the morning when it\'s less crowded, ',
+    'Try local coffee at traditional kopi shops, ',
     'Bring sunscreen for outdoor attractions'
   ],
   Malang: [
-    'Wear warm clothes as Malang is cooler in the evening',
-    'Visit Coban Rondo Waterfall early morning for best photos',
-    'Try the local apple tea at cafes',
+    'Wear warm clothes as Malang is cooler in the evening, ',
+    'Visit Coban Rondo Waterfall early morning for best photos, ',
+    'Try the local apple tea at cafes, ',
     'Book attractions in advance during weekends'
   ],
   Probolinggo: [
-    'Wake up very early for Bromo sunrise (3-4 AM)',
-    'Wear layers as it gets cold at higher elevation',
-    'Bring a mask for the volcanic dust',
+    'Wake up very early for Bromo sunrise (3-4 AM), ',
+    'Wear layers as it gets cold at higher elevation, ',
+    'Bring a mask for the volcanic dust, ',
     'Hire a local guide for the best experience'
   ],
   Pasuruan: [
-    'Allow extra time for mountain roads',
-    'Stay hydrated at high altitude locations',
-    'Pack light rain jacket as weather changes quickly',
+    'Allow extra time for mountain roads, ',
+    'Stay hydrated at high altitude locations, ',
+    'Pack light rain jacket as weather changes quickly, ',
     'Respect local cultural sites and dress appropriately'
   ],
   Madiun: [
-    'Try Pecel Madiun at local warungs',
-    'Visit Alun-Alun in the morning for a relaxed walk',
-    'Bring cash for small markets',
+    'Try Pecel Madiun at local warungs, ',
+    'Visit Alun-Alun in the morning for a relaxed walk, ',
+    'Bring cash for small markets, ',
     'Ask locals for recommended snack spots'
   ],
   Banyuwangi: [
-    'Visit Ijen Crater before sunrise for blue fire phenomenon',
-    'Bring plenty of water and electrolyte drinks',
-    'Hire experienced guides for crater hikes',
+    'Visit Ijen Crater before sunrise for blue fire phenomenon, ',
+    'Bring plenty of water and electrolyte drinks, ',
+    'Hire experienced guides for crater hikes, ',
     'Take malaria prevention precautions'
   ],
   Jember: [
-    'Best time to visit is during dry season',
-    'Sample local coffee at plantation tours',
-    'Wear comfortable hiking shoes',
+    'Best time to visit is during dry season, ',
+    'Sample local coffee at plantation tours, ',
+    'Wear comfortable hiking shoes, ',
     'Bring insect repellent for outdoor activities'
   ],
   Sidoarjo: [
-    'Visit early morning to avoid afternoon heat',
-    'Bring camera for unique photo opportunities',
-    'Check weather before visiting outdoor sites',
+    'Visit early morning to avoid afternoon heat, ',
+    'Bring camera for unique photo opportunities, ',
+    'Check weather before visiting outdoor sites, ',
     'Respect restricted areas and follow local guidelines'
   ],
   Batu: [
-    'Dress warmly as Batu is in highland area',
-    'Visit attractions early to avoid crowds',
-    'Try local strawberry products',
+    'Dress warmly as Batu is in highland area, ',
+    'Visit attractions early to avoid crowds, ',
+    'Try local strawberry products, ',
     'Bring warm blanket if staying overnight'
   ]
 };
@@ -435,7 +435,7 @@ Requirements:
     return res.json({ success: true, data: normalized });
   } catch (error) {
     console.error('Server error:', error);
-    // On unexpected error, return normalized mock data
+    // if ai gets an error, munculin mock data
     try {
       const { startPoint, duration, transportMode } = req.body;
       const mockData = generateMockRoute(startPoint, duration, transportMode);

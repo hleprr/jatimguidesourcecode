@@ -1,5 +1,20 @@
 import React, { useState } from 'react';
-import { MapPin, Star, UtensilsCrossed, Hotel, Ticket, Loader2, X } from 'lucide-react';
+import JatimGuideLogo from './JatimGuideLogo.png';
+import {
+  Home,
+  Map,
+  FileText,
+  Calendar,
+  Settings,
+  LogOut,
+  MapPin,
+  Star,
+  UtensilsCrossed,
+  Hotel,
+  Ticket,
+  Loader2,
+  X
+} from 'lucide-react';
 
 interface Destination {
   id: number;
@@ -55,7 +70,7 @@ const CITY_TITLES: { [key: string]: string } = {
   Batu: 'Batu: Highland Sanctuary'
 };
 
-// Recommended foods per city (used to set "Food to try" per day)
+// Recommended foods per city (utk "Food to try" per day)
 const CITY_FOODS: { [key: string]: string[] } = {
   Surabaya: ['Rawon', 'Rujak Cingur', 'Soto ayam'],
   Malang: ['Bakso Malang', 'Pecel', 'Orem-orem'],
@@ -69,7 +84,7 @@ const CITY_FOODS: { [key: string]: string[] } = {
 };
 
 export default function JatimGuide() {
-  const [activeTab, setActiveTab] = useState<string>('Routes');
+  const [activeTab, setActiveTab] = useState<string>('Plan Route');
   const [startPoint, setStartPoint] = useState<string>('');
   const [transportMode, setTransportMode] = useState<string>('Public Transport');
   const [duration, setDuration] = useState<string>('');
@@ -205,37 +220,69 @@ export default function JatimGuide() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen" style={{ 
+      backgroundImage: `url(${JatimGuideLogo})`, 
+      backgroundSize: 'contain', 
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'right',
+      backgroundColor: '#0F4062' 
+    }}>
+    <div className="min-h-screen flex flex-col">
       {/*headernya guys*/}
       <header className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <h1 className="text-2xl font-bold text-gray-900">JatimGuide</h1>
-            <nav className="flex gap-6">
-              {['Home', 'Routes', 'Map', 'Booking', 'Settings'].map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`text-sm font-medium transition-colors ${
-                    activeTab === tab
-                      ? 'text-blue-600 border-b-2 border-blue-600 pb-1'
-                      : 'text-gray-600 hover:text-gray-900'
-                  }`}
-                >
-                  {tab}
-                </button>
-              ))}
-            </nav>
+          <div className="flex items-center justify-between py-3">
+            {/*logo + brand*/}
+            <div className="flex items-center gap-3">
+              <img src={JatimGuideLogo} alt="JatimGuide" className="w-10 h-10" />
+              <span className="text-2xl font-semibold text-[#0F4062]">JatimGuide</span>
+            </div>
+
+            {/*nav + sign out button*/}
+            <div className="flex items-center gap-3">
+              <nav className="hidden md:flex">
+                <div className="flex items-end gap-2 bg-gray-100 rounded-full p-1 shadow-sm">
+                  {[
+                    { key: 'Home', icon: <Home className="w-4 h-4 inline-block mr-2" /> },
+                    { key: 'Map', icon: <Map className="w-4 h-4 inline-block mr-2" /> },
+                    { key: 'Plan Route', icon: <FileText className="w-4 h-4 inline-block mr-2" /> },
+                    { key: 'Booking', icon: <Calendar className="w-4 h-4 inline-block mr-2" /> },
+                    { key: 'Settings', icon: <Settings className="w-4 h-4 inline-block mr-2" /> }
+                  ].map((item) => {
+                    const active = activeTab === item.key;
+                    return (
+                      <button
+                        key={item.key}
+                        onClick={() => setActiveTab(item.key)}
+                        className={`flex items-center px-3 py-2 text-sm rounded-full transition-colors font-medium
+                          ${active ? 'bg-white text-[#0F4062] shadow' : 'text-gray-600 hover:text-[#0F4062]'}`}
+                      >
+                        {item.icon}
+                        <span className="whitespace-nowrap">{item.key}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </nav>
+
+              <button
+                onClick={() => { /*sign out handler placeholder*/ }}
+                className="flex items-center gap-2 px-4 py-2 bg-[#0F4062] text-white text-sm rounded-md shadow hover:opacity-95"
+              >
+                <LogOut className="w-4 h-4" />
+                Sign out
+              </button>
+            </div>
           </div>
         </div>
       </header>
 
       {/*main content*/}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/*route configuration sidebar*/}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg shadow p-6">
+            <div className="bg-[#D9D9D9] rounded-lg shadow p-6 border-[1.5px] border-black">
               <h2 className="text-xl font-bold text-gray-900 mb-6">Route Configuration</h2>
               
               <div className="space-y-4">
@@ -316,14 +363,14 @@ export default function JatimGuide() {
           <div className="lg:col-span-2 space-y-8">
             {/*display for the generated route*/}
             {generatedRoute && (
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg shadow-lg p-6 border-2 border-blue-200">
+              <div className="bg-[#D9D9D9] rounded-lg shadow-lg p-6 border-[1.5px] border-black">
                 <h2 className="text-2xl font-bold text-gray-900 mb-2">{generatedRoute.title}</h2>
                 <p className="text-gray-700 mb-6">{generatedRoute.summary}</p>
                 
                 {/*days itinerary*/}
                 <div className="space-y-4">
                   {generatedRoute.days.map((day) => (
-                    <div key={day.day} className="bg-white rounded-lg p-5 shadow">
+                    <div key={day.day} className="bg-white rounded-lg p-5 shadow border-[1.1px] border-black">
                       <h3 className="text-lg font-bold text-blue-600 mb-2">
                         {day.title}
                       </h3>
@@ -440,10 +487,10 @@ export default function JatimGuide() {
               <>
                 {/*recom hotels*/}
                 <div>
-                  <h2 className="text-xl font-bold text-gray-900 mb-4">Recommended Hotels</h2>
+                  <h2 className="text-xl font-bold text-white mb-4">Recommended Hotels</h2>
                   <div className="space-y-4">
                     {hotels.map((hotel) => (
-                      <div key={hotel.id} className="bg-white rounded-lg shadow p-6 flex items-start gap-4">
+                      <div key={hotel.id} className="bg-[#D9D9D9] rounded-lg shadow p-6 flex items-start gap-4 border-[1.5px] border-black">
                         <div className="w-24 h-24 bg-gray-300 rounded-lg flex items-center justify-center">
                           <Hotel className="w-8 h-8 text-gray-500" />
                         </div>
@@ -470,10 +517,10 @@ export default function JatimGuide() {
 
                 {/*recom makanan*/}
                 <div>
-                  <h2 className="text-xl font-bold text-gray-900 mb-4">Food Recommendations</h2>
+                  <h2 className="text-xl font-bold text-white mb-4">Food Recommendations</h2>
                   <div className="grid grid-cols-2 gap-4">
                     {foods.map((food) => (
-                      <div key={food.id} className="bg-white rounded-lg shadow p-4">
+                      <div key={food.id} className="bg-[#D9D9D9] rounded-lg shadow p-4 border-[1.5px] border-black">
                         <div className="w-full h-32 bg-gray-300 rounded-lg mb-3 flex items-center justify-center">
                           <UtensilsCrossed className="w-8 h-8 text-gray-500" />
                         </div>
@@ -499,7 +546,7 @@ export default function JatimGuide() {
                 </div>
 
                 {/*booking tickets dan hotels*/}
-                <div className="bg-gray-200 rounded-lg shadow p-8 text-center">
+                <div className="bg-[#D9D9D9] rounded-lg shadow p-8 text-center">
                   <Ticket className="w-12 h-12 text-gray-600 mx-auto mb-3" />
                   <h2 className="text-xl font-bold text-gray-900">Book Tickets & Hotels</h2>
                 </div>
@@ -508,7 +555,7 @@ export default function JatimGuide() {
 
             {/*munculin msg kalo route blm generated*/}
             {!generatedRoute && !isGenerating && (
-              <div className="bg-white rounded-lg shadow p-12 text-center">
+              <div className="bg-[#D9D9D9] rounded-lg shadow p-12 text-center border-[1.5px] border-black">
                 <MapPin className="w-16 h-16 text-gray-400 mx-auto mb-4" />
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Generate Your Route First</h3>
                 <p className="text-gray-600">Fill in the route configuration on the left and click "Generate Smart Route" to get started with your East Java adventure!</p>
@@ -519,30 +566,19 @@ export default function JatimGuide() {
       </main>
 
       {/*footer*/}
-      <footer className="bg-white border-t mt-12">
+      <footer className="border-t" style={{ backgroundColor: '#144363' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex justify-between">
-            <div className="text-sm text-gray-600">JatimGuide</div>
+            <div className="text-sm">
+              <span className="font-bold text-[#E8F4FF] text-2xl">@JatimGuide</span>
+              <span className="font-thin ml-1 text-[#B7C9D9] text-2xl">Properties</span>
+            </div>
             <div className="grid grid-cols-3 gap-12">
-              <div>
-                <p className="text-sm text-gray-600">placeholder</p>
-                <p className="text-sm text-gray-600">placeholder</p>
-                <p className="text-sm text-gray-600">placeholder</p>
-              </div>
-              <div>
-                <p className="text-sm text-gray-600">placeholder</p>
-                <p className="text-sm text-gray-600">placeholder</p>
-                <p className="text-sm text-gray-600">placeholder</p>
-              </div>
-              <div>
-                <p className="text-sm text-gray-600">placeholder</p>
-                <p className="text-sm text-gray-600">placeholder</p>
-                <p className="text-sm text-gray-600">placeholder</p>
-              </div>
             </div>
           </div>
         </div>
       </footer>
+    </div>
     </div>
   );
 }

@@ -9,6 +9,10 @@
 # production
 /build
 
+echo ".env" >> .gitignore
+git add .gitignore
+
+
 # misc
 .DS_Store
 .env.local
