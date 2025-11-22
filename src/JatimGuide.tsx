@@ -69,7 +69,8 @@ const CITY_DESTINATIONS: { [key: string]: Destination[] } = {
     { id: 5, name: 'Ampel Mosque', type: 'Religious', description: 'Historic mosque and old town', theme: 'Cultural' },
     { id: 6, name: 'Tunjungan Plaza', type: 'Shopping', description: 'Modern shopping mall', theme: 'Shop' },
     { id: 7, name: 'Submarine Museum Tour', type: 'Adventure', description: 'Explore submarine interior', theme: 'Adventure' },
-    { id: 8, name: 'Local Coffee Warungs', type: 'Culinary', description: 'Traditional coffee shops', theme: 'Hidden Gems' }
+    { id: 8, name: 'Local Coffee Warungs', type: 'Culinary', description: 'Traditional coffee shops', theme: 'Hidden Gems' },
+    { id: 9, name: 'Pasar Atom', type: 'Market', description: 'Famous traditional market for clothes and electronics', theme: 'Shop' }
   ],
   Malang: [
     { id: 1, name: 'Coban Rondo Waterfall', type: 'Nature', description: 'Beautiful waterfall hike', theme: 'Nature' },
@@ -79,7 +80,9 @@ const CITY_DESTINATIONS: { [key: string]: Destination[] } = {
     { id: 5, name: 'Museum Angkut', type: 'Museum', description: 'Transportation museum', theme: 'Educational' },
     { id: 6, name: 'Apple Farms Tour', type: 'Agricultural', description: 'Local apple plantations', theme: 'Nature' },
     { id: 7, name: 'Traditional Markets', type: 'Market', description: 'Local market exploration', theme: 'Culinary' },
-    { id: 8, name: 'Mountain Trekking', type: 'Adventure', description: 'Hiking trails', theme: 'Adventure' }
+    { id: 8, name: 'Mountain Trekking', type: 'Adventure', description: 'Hiking trails', theme: 'Adventure' },
+    { id: 9, name: 'Alun-Alun Malang Shops', type: 'Shopping', description: 'Shops around the central square', theme: 'Shop' },
+    { id: 10, name: 'Crafts Markets', type: 'Market', description: 'Local crafts and souvenirs', theme: 'Shop' }
   ],
   Probolinggo: [
     { id: 1, name: 'Mount Bromo Sunrise', type: 'Nature', description: 'Iconic volcano sunrise', theme: 'Nature' },
@@ -89,17 +92,20 @@ const CITY_DESTINATIONS: { [key: string]: Destination[] } = {
     { id: 5, name: 'Local Fishing Villages', type: 'Cultural', description: 'Traditional fishing community', theme: 'Cultural' },
     { id: 6, name: 'Volcanic Rock Formations', type: 'Photography', description: 'Stunning landscapes', theme: 'Hidden Gems' },
     { id: 7, name: 'Local Seafood Markets', type: 'Culinary', description: 'Fresh seafood experience', theme: 'Culinary' },
-    { id: 8, name: 'Jeep Tours', type: 'Adventure', description: 'Off-road jeep experience', theme: 'Adventure' }
+    { id: 8, name: 'Jeep Tours', type: 'Adventure', description: 'Off-road jeep experience', theme: 'Adventure' },
+    { id: 9, name: 'Pasar Probolinggo', type: 'Market', description: 'Traditional market selling local produce and crafts', theme: 'Shop' },
+    { id: 10, name: 'Craft Shops', type: 'Shopping', description: 'Local handicraft stores', theme: 'Shop' }
   ],
   Pasuruan: [
     { id: 1, name: 'Wonosari Beach', type: 'Beach', description: 'Scenic beach', theme: 'Nature' },
     { id: 2, name: 'Bromo Viewpoint (Pasuruan side)', type: 'Viewpoint', description: 'Alternative Bromo views', theme: 'Nature' },
-    { id: 3, name: 'Grati Market', type: 'Market', description: 'Traditional goods market', theme: 'Culinary' },
+    { id: 3, name: 'Grati Market', type: 'Market', description: 'Traditional goods market', theme: 'Shop' },
     { id: 4, name: 'Mountain Trails', type: 'Adventure', description: 'Hiking opportunities', theme: 'Adventure' },
     { id: 5, name: 'Local Restaurants', type: 'Culinary', description: 'Regional cuisine', theme: 'Culinary' },
     { id: 6, name: 'Scenic Drive', type: 'Tour', description: 'Mountain scenic route', theme: 'Popular' },
     { id: 7, name: 'Hidden Waterfalls', type: 'Nature', description: 'Secret waterfall spots', theme: 'Hidden Gems' },
-    { id: 8, name: 'Cultural Villages', type: 'Cultural', description: 'Local community tours', theme: 'Cultural' }
+    { id: 8, name: 'Cultural Villages', type: 'Cultural', description: 'Local community tours', theme: 'Cultural' },
+    { id: 9, name: 'Local Shops', type: 'Shopping', description: 'Small local retailers and stalls', theme: 'Shop' }
   ],
   Madiun: [
     { id: 1, name: 'Alun-Alun Madiun', type: 'Square', description: 'City center plaza', theme: 'Popular' },
@@ -109,7 +115,9 @@ const CITY_DESTINATIONS: { [key: string]: Destination[] } = {
     { id: 5, name: 'Local Snack Shops', type: 'Culinary', description: 'Street food tasting', theme: 'Culinary' },
     { id: 6, name: 'Cultural Heritage Sites', type: 'Cultural', description: 'Historical landmarks', theme: 'Cultural' },
     { id: 7, name: 'Local Coffee Roastery', type: 'Culinary', description: 'Coffee production tour', theme: 'Hidden Gems' },
-    { id: 8, name: 'Caruban Cultural Spot', type: 'Cultural', description: 'Traditional arts area', theme: 'Cultural' }
+    { id: 8, name: 'Caruban Cultural Spot', type: 'Cultural', description: 'Traditional arts area', theme: 'Cultural' },
+    { id: 9, name: 'Alun-Alun Markets', type: 'Market', description: 'Shops and stalls around the square', theme: 'Shop' },
+    { id: 10, name: 'Local Shops', type: 'Shopping', description: 'Independent retailers and craft sellers', theme: 'Shop' }
   ],
   Banyuwangi: [
     { id: 1, name: 'Ijen Crater Blue Fire', type: 'Nature', description: 'Unique blue fire phenomenon', theme: 'Nature' },
@@ -119,7 +127,9 @@ const CITY_DESTINATIONS: { [key: string]: Destination[] } = {
     { id: 5, name: 'Local Art Markets', type: 'Shopping', description: 'Handmade crafts', theme: 'Shop' },
     { id: 6, name: 'Fishing Villages', type: 'Cultural', description: 'Traditional communities', theme: 'Cultural' },
     { id: 7, name: 'Crater Hiking', type: 'Adventure', description: 'Challenging hike', theme: 'Adventure' },
-    { id: 8, name: 'Secret Waterfalls', type: 'Nature', description: 'Hidden natural spots', theme: 'Hidden Gems' }
+    { id: 8, name: 'Secret Waterfalls', type: 'Nature', description: 'Hidden natural spots', theme: 'Hidden Gems' },
+    { id: 9, name: 'Handmade Crafts', type: 'Shopping', description: 'Local artisan goods and souvenirs', theme: 'Shop' },
+    { id: 10, name: 'Souvenir Shops', type: 'Shopping', description: 'Tourist-focused souvenir stores', theme: 'Shop' }
   ],
   Jember: [
     { id: 1, name: 'Papuma Beach', type: 'Beach', description: 'Scenic coastal area', theme: 'Nature' },
@@ -129,7 +139,8 @@ const CITY_DESTINATIONS: { [key: string]: Destination[] } = {
     { id: 5, name: 'Local Markets', type: 'Market', description: 'Traditional markets', theme: 'Popular' },
     { id: 6, name: 'Coffee Roastery', type: 'Culinary', description: 'Coffee production', theme: 'Educational' },
     { id: 7, name: 'Beach Sunset Spots', type: 'Photography', description: 'Photography locations', theme: 'Hidden Gems' },
-    { id: 8, name: 'Coastal Villages', type: 'Cultural', description: 'Fishing communities', theme: 'Cultural' }
+    { id: 8, name: 'Coastal Villages', type: 'Cultural', description: 'Fishing communities', theme: 'Cultural' },
+    { id: 9, name: 'Craft Shops', type: 'Shopping', description: 'Local handicraft stores', theme: 'Shop' }
   ],
   Sidoarjo: [
     { id: 1, name: 'Lumpur Sidoarjo Viewpoint', type: 'Geological', description: 'Mudflow viewing area', theme: 'Educational' },
@@ -139,7 +150,8 @@ const CITY_DESTINATIONS: { [key: string]: Destination[] } = {
     { id: 5, name: 'Local Restaurants', type: 'Culinary', description: 'Regional dishes', theme: 'Culinary' },
     { id: 6, name: 'Nature Walks', type: 'Nature', description: 'Hiking trails', theme: 'Nature' },
     { id: 7, name: 'Photography Tours', type: 'Photography', description: 'Unique photo spots', theme: 'Hidden Gems' },
-    { id: 8, name: 'Market Exploration', type: 'Cultural', description: 'Cultural immersion', theme: 'Cultural' }
+    { id: 8, name: 'Sambu Market', type: 'Market', description: 'Major local market', theme: 'Shop' },
+    { id: 9, name: 'Local Shops', type: 'Shopping', description: 'Small local retailers', theme: 'Shop' }
   ],
   Batu: [
     { id: 1, name: 'Batu Secret Zoo', type: 'Wildlife', description: 'Zoo experience', theme: 'Educational' },
@@ -149,7 +161,9 @@ const CITY_DESTINATIONS: { [key: string]: Destination[] } = {
     { id: 5, name: 'Mountain Trekking', type: 'Adventure', description: 'Highland hiking', theme: 'Adventure' },
     { id: 6, name: 'Local Cafes', type: 'Culinary', description: 'Strawberry products', theme: 'Culinary' },
     { id: 7, name: 'Viewpoint Sunset', type: 'Photography', description: 'Evening views', theme: 'Hidden Gems' },
-    { id: 8, name: 'Cultural Markets', type: 'Shopping', description: 'Local crafts', theme: 'Shop' }
+    { id: 8, name: 'Cultural Markets', type: 'Shopping', description: 'Local crafts', theme: 'Shop' },
+    { id: 9, name: 'Craft Shops', type: 'Shopping', description: 'Handmade goods and souvenirs', theme: 'Shop' },
+    { id: 10, name: 'Souvenir Stores', type: 'Shopping', description: 'Tourist-oriented souvenir shops', theme: 'Shop' }
   ]
 };
 
