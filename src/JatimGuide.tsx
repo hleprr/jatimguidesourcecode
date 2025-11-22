@@ -279,6 +279,16 @@ export default function JatimGuide() {
     return null;
   };
 
+  // small utility to shuffle arrays (used when not traveling between cities)
+  const shuffleArray = <T,>(arr: T[]): T[] => {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  };
+
   const generateDayTitle = (day: number, locationString: string): string => {
     const city = extractCity(locationString);
     const cityTitle = CITY_TITLES[city] || `Day ${day}: ${city}`;
@@ -297,7 +307,7 @@ export default function JatimGuide() {
     setAddedHotels([]);
     setAddedFoods([]);
 
-        try {
+    try {
       const response = await fetch('http://localhost:3001/api/generate-route', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -349,7 +359,7 @@ export default function JatimGuide() {
         ? aiData.days
         : Array.from({ length: Math.max(1, parseInt(duration || '1')) }, (_, i) => ({ day: i + 1 }));
 
-                 const mockRoute: GeneratedRoute = {
+      const mockRoute: GeneratedRoute = {
         title: aiData.title || `${duration}-Day East Java Adventure from ${startPoint}`,
         summary: aiData.summary || `Explore the best of East Java starting from ${startPoint} using ${transportMode}.`,
         days: aiDays.map((day: any, idx: number) => {
@@ -402,21 +412,34 @@ export default function JatimGuide() {
             }
           }
 
+          // If user is NOT traveling between cities, ensure finalCity is startPoint
+          if (!travelBetweenCities) {
+            finalCity = startPoint;
+          }
+
           // STEP 2: Get activities from the finalCity that match user preferences
           let activities: string[] = [];
 
           if (finalCity && CITY_DESTINATIONS[finalCity]) {
+            const cityDestList = CITY_DESTINATIONS[finalCity];
+
             if (destinationPreferences.length > 0) {
-              // Get activities from finalCity that match preferences
-              activities = CITY_DESTINATIONS[finalCity]
+              // Filter destinations that match preferences
+              const matching = cityDestList
                 .filter(d => destinationPreferences.includes(d.theme))
-                .map(d => d.name)
-                .slice(0, 4);
+                .map(d => d.name);
+
+              if (!travelBetweenCities) {
+                // When not traveling between cities, randomize matching activities
+                activities = shuffleArray(matching).slice(0, 4);
+              } else {
+                // When traveling between cities, keep deterministic order (top matches)
+                activities = matching.slice(0, 4);
+              }
             } else {
-              // No preferences, get any activities from finalCity
-              activities = CITY_DESTINATIONS[finalCity]
-                .map(d => d.name)
-                .slice(0, 4);
+              // No preferences: either randomize when staying in one city, or take top when traveling
+              const allNames = cityDestList.map(d => d.name);
+              activities = !travelBetweenCities ? shuffleArray(allNames).slice(0, 4) : allNames.slice(0, 4);
             }
           }
 
@@ -424,11 +447,12 @@ export default function JatimGuide() {
           if (activities.length === 0) {
             if (Array.isArray(day.activities) && day.activities.length > 0) {
               activities = day.activities.filter((a: string) => !!a).slice(0, 4);
-            } else if (destinationPreferences.length > 0) {
-              const filtered = filteredDestinations.slice(0, 4).map(d => d.name);
-              activities = filtered;
+            } else if (destinationPreferences.length > 0 && filteredDestinations.length > 0) {
+              // If staying in one city but there were no matches in that city, try to use filteredDestinations globally
+              const globalMatches = filteredDestinations.map(d => d.name);
+              activities = shuffleArray(globalMatches).slice(0, 4);
             } else {
-              activities = availableDestinations.slice(0, 4).map(d => d.name);
+              activities = shuffleArray(availableDestinations.map(d => d.name)).slice(0, 4);
             }
           }
 
